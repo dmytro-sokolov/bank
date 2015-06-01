@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class PostgreSqlDaoFactory implements DaoFactory {
+public class MySqlDaoFactory implements DaoFactory {
 
-    private String sqlDriver = "org.postgresql.Driver";
-    private String urlConnection = "jdbc:postgresql://localhost:5432/bank";
-    private String dbUserName = "postgres";
-    private String dbPassword = "123";
+    private String sqlDriver = "com.mysql.jdbc.Driver";
+    private String urlConnection = "jdbc:mysql://localhost:3306/bank";
+    private String dbUserName = "root";
+    private String dbPassword = "1234";
 
     //todo : Ask mentor for this next cases: 1) Do I have to handle exception inside method or not; 2) What to do in case of unsuccessful connection
     @Override
@@ -32,6 +32,16 @@ public class PostgreSqlDaoFactory implements DaoFactory {
 
     @Override
     public GenericDao getClientDao(Connection connection) {
-        return new PostgreSqlStudentDao(connection);
+        return new MySqlClientDao(connection);
+    }
+
+    @Override
+    public GenericDao getCurrencyDao(Connection connection) {
+        return new MySqlCurrencyDao(connection);
+    }
+
+    @Override
+    public GenericDao getAccountDao(Connection connection) {
+        return new MySqlAccountDao(connection);
     }
 }

@@ -3,6 +3,11 @@
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="bank.war">
       <element id="artifact" artifact-name="bank:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="mysql-connector-java-5.1.35-bin" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>
