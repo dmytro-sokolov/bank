@@ -64,7 +64,7 @@ public class MySqlClientDao extends AbstractJDBCDao<Client, Integer> implements 
                 DaoFactory factory = new MySqlDaoFactory();
                 Connection connection = factory.getConnection();
                 GenericDao accountDao = factory.getAccountDao(connection);
-                Map<String,Account> map = accountDao.getAll();
+                Map<String,Account> map = accountDao.getByEntity(client.getId());
                 ConcurrentHashMap<String, Account> userMap = new ConcurrentHashMap<>();
                 for (Map.Entry<String, Account> entry : map.entrySet()) {
                     String key = entry.getKey();

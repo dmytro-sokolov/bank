@@ -12,7 +12,7 @@ public interface GenericDao<T, PK extends Serializable> {
     T persist(T object) throws  PersistException;
     T getByPK(Integer key) throws  PersistException;
     // todo weird method
-    default ConcurrentSkipListSet<T> getByEntity(PK entity) throws PersistException {
+    default Map<String,T> getByEntity(PK entity) throws PersistException {
         return null;
     }
     void update(T object) throws  PersistException;

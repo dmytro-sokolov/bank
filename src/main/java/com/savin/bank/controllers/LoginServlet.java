@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@WebServlet(name = "MocController", urlPatterns={"/login"})
+@WebServlet(name = "LoginController", urlPatterns={"/profile"})
 public class LoginServlet extends javax.servlet.http.HttpServlet {
     private Map<String, Client> clientMap;
     private DaoFactory daoFactory;

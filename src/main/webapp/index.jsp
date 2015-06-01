@@ -4,7 +4,7 @@
    <h2>Welcome to T&D Bank</h2>
 </header>
 <div style="margin: 0 auto;">
-    <form action="login" method="post">
+    <form action="profile" method="post">
         <div>
             <label for="login">Online ID </label>
             <input type="text" name="login" id="login"/>

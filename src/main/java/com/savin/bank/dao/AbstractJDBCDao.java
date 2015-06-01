@@ -1,12 +1,10 @@
 package com.savin.bank.dao;
 
-import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 
 public abstract class AbstractJDBCDao <T extends Identified<PK>, PK extends Integer> implements GenericDao<T, PK> {
@@ -39,7 +37,7 @@ public abstract class AbstractJDBCDao <T extends Identified<PK>, PK extends Inte
      * @param entity
      * @return
      */
-    public String getSelectQueryByEntity(String entity) {
+    public String getSelectQueryByEntity(PK entity) {
         return null;
     }
 
@@ -89,6 +87,19 @@ public abstract class AbstractJDBCDao <T extends Identified<PK>, PK extends Inte
     public Map<String,T> getAll() throws PersistException {
         Map<String,T> map = null;
         String sqlQuery = getSelectQuery();
+        try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            ResultSet set = statement.executeQuery();
+            map = parseResultSet(set);
+        } catch (Exception e) {
+            throw new PersistException(e);
+        }
+        return map;
+    }
+
+    @Override
+    public Map<String,T> getByEntity(PK entity) throws PersistException {
+        Map<String,T> map = null;
+        String sqlQuery = getSelectQueryByEntity(entity);
         try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
             ResultSet set = statement.executeQuery();
             map = parseResultSet(set);

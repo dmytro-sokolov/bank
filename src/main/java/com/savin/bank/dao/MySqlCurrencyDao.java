@@ -16,7 +16,7 @@ public class MySqlCurrencyDao  extends AbstractJDBCDao<Currency, Integer> implem
     }
 
     @Override
-    public String getSelectQueryByEntity(String entity) {
+    public String getSelectQueryByEntity(Integer entity) {
         return "select * from currency where id = " + entity+";";
     }
 

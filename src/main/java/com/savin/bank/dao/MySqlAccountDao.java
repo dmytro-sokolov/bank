@@ -16,9 +16,15 @@ public class MySqlAccountDao extends AbstractJDBCDao<Account, Integer> implement
         super(connection);
     }
 
+//    @Override
+//    public String getSelectQueryByEntity(String entity) {
+//        return "select * from currency where id = " + entity+";";
+//    }
+
+
     @Override
-    public String getSelectQueryByEntity(String entity) {
-        return "select * from currency where id = " + entity+";";
+    public String getSelectQueryByEntity(Integer entity) {
+        return "select * from account where client_id = "+entity+";";
     }
 
     @Override
@@ -50,11 +56,12 @@ public class MySqlAccountDao extends AbstractJDBCDao<Account, Integer> implement
                 account.setId(set.getInt("id"));
                 account.setUser_id(set.getInt("client_id"));
                 account.setBalance(set.getDouble("balance"));
+                account.setType(set.getString("type"));
                 DaoFactory factory = new MySqlDaoFactory();
                 Connection connection = factory.getConnection();
                 GenericDao currencyDao = factory.getCurrencyDao(connection);
-                Map<String,Currency> map = currencyDao.getAll();
-                account.setCurrency(map.get(set.getInt("currency")));
+                Map<String,Currency> map = currencyDao.getByEntity(set.getInt("currency"));
+                account.setCurrency((Currency) map.values().toArray()[0]);
                 accountMap.put(""+account.getId(),account);
             }
         } catch (SQLException e) {
