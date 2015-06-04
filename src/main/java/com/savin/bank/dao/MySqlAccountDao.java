@@ -72,7 +72,7 @@ public class MySqlAccountDao extends AbstractJDBCDao<Account, Integer> implement
 
     @Override
     protected void prepareStatementForUpdate(PreparedStatement statement, Account object) throws PersistException {
-        //todo need to be implemented
+
     }
 
     @Override

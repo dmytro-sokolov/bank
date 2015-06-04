@@ -6,12 +6,16 @@ import java.sql.SQLException;
 
 public class MySqlDaoFactory implements DaoFactory {
 
-    private String sqlDriver = "com.mysql.jdbc.Driver";
-    private String urlConnection = "jdbc:mysql://localhost:3306/bank";
-    private String dbUserName = "root";
-    private String dbPassword = "1234";
+    private final String sqlDriver;
+    private String urlConnection;
+    private String dbUserName;
+    private String dbPassword;
 
-    //todo : Ask mentor for this next cases: 1) Do I have to handle exception inside method or not; 2) What to do in case of unsuccessful connection
+    {
+        sqlDriver = "dsa";
+
+    }
+
     @Override
     public Connection getConnection() {
         try {
@@ -29,6 +33,8 @@ public class MySqlDaoFactory implements DaoFactory {
             return connection;
         }
     }
+
+
 
     @Override
     public GenericDao getClientDao(Connection connection) {

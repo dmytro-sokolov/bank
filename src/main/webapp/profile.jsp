@@ -16,6 +16,7 @@
     <title></title>
 </head>
 <body>
+<p>Client : ${client.name}</p>
 <%Client client = (Client)request.getSession().getAttribute("client");
                  Map<String, Account> map =  client.getAccountsList();
 response.getWriter().write("<h1>Welcome ,"+client.getName()+"!</h1>\n" +

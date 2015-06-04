@@ -5,10 +5,7 @@ import com.savin.bank.src.Account;
 import com.savin.bank.src.Client;
 import com.savin.bank.src.Currency;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -88,11 +85,16 @@ public class MySqlClientDao extends AbstractJDBCDao<Client, Integer> implements 
             statement.setString(1,object.getName());
             statement.setString(2, object.getSurname());
             statement.setString(3,object.getSecondName());
+            statement.setString(4, object.getEmail());
+            statement.setString(5, object.getPassword());
+            statement.setDate(6, (Date) object.getDateOfRegistration());
+            statement.setDate(7, (Date) object.getDateOfBirth());
         } catch (Exception e) {
             throw new PersistException(e);
         }
     }
     // todo This is not valid
+    @Deprecated
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, Client object) throws PersistException {
         try {
