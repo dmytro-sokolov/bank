@@ -2,9 +2,7 @@ package com.savin.bank.dao;
 
 import java.io.Serializable;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentSkipListSet;
 
 
 public interface GenericDao<T, PK extends Serializable> {

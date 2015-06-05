@@ -1,5 +1,8 @@
-package com.savin.bank.dao;
+package com.savin.bank.dao.Impl;
 
+import com.savin.bank.dao.AbstractJDBCDao;
+import com.savin.bank.dao.GenericDao;
+import com.savin.bank.dao.PersistException;
 import com.savin.bank.src.Currency;
 
 import java.sql.Connection;
@@ -9,9 +12,9 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class MySqlCurrencyDao  extends AbstractJDBCDao<Currency, Integer> implements GenericDao<Currency, Integer> {
+public class CurrencyDAOImpl extends AbstractJDBCDao<Currency, Integer> implements GenericDao<Currency, Integer> {
 
-    public MySqlCurrencyDao(Connection connection) {
+    public CurrencyDAOImpl(Connection connection) {
         super(connection);
     }
 

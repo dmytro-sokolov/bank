@@ -2,7 +2,7 @@ package com.savin.bank.controllers;
 
 import com.savin.bank.dao.DaoFactory;
 import com.savin.bank.dao.GenericDao;
-import com.savin.bank.dao.MySqlDaoFactory;
+import com.savin.bank.dao.Impl.DaoFactoryImpl;
 import com.savin.bank.dao.PersistException;
 import com.savin.bank.src.Client;
 
@@ -16,10 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @WebServlet(name = "LoginController", urlPatterns={"/profile"})
 public class LoginServlet extends javax.servlet.http.HttpServlet {
@@ -30,7 +27,7 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        daoFactory = new MySqlDaoFactory();
+        daoFactory = new DaoFactoryImpl();
         connection = daoFactory.getConnection();
         clientDao = daoFactory.getClientDao(connection);
         try {
@@ -45,6 +42,7 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
         doGet(request, response);
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");

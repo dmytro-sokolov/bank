@@ -2,14 +2,9 @@ package com.savin.bank.src;
 
 import com.savin.bank.dao.Identified;
 
-import java.beans.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentSkipListSet;
 
 public class Client implements Serializable, Identified<Integer>{
     private long serialVersionUID = 1L;
@@ -100,6 +95,8 @@ public class Client implements Serializable, Identified<Integer>{
     public void setDateOfRegistration(Date args) {
         dateOfRegistration = args;
     }
+
+    @Override
     public Integer getId() {
         return id;
     }

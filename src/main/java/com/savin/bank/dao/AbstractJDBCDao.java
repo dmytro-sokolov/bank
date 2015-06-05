@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Map;
-import java.util.concurrent.ConcurrentSkipListSet;
 
 
 public abstract class AbstractJDBCDao <T extends Identified<PK>, PK extends Integer> implements GenericDao<T, PK> {

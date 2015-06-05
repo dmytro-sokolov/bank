@@ -1,20 +1,20 @@
-package com.savin.bank.dao;
+package com.savin.bank.dao.Impl;
 
 
+import com.savin.bank.dao.AbstractJDBCDao;
+import com.savin.bank.dao.DaoFactory;
+import com.savin.bank.dao.GenericDao;
+import com.savin.bank.dao.PersistException;
 import com.savin.bank.src.Account;
 import com.savin.bank.src.Client;
-import com.savin.bank.src.Currency;
 
 import java.sql.*;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class MySqlClientDao extends AbstractJDBCDao<Client, Integer> implements GenericDao<Client, Integer> {
+public class ClientDAOImpl extends AbstractJDBCDao<Client, Integer> implements GenericDao<Client, Integer> {
 
-    public MySqlClientDao(Connection connection) {
+    public ClientDAOImpl(Connection connection) {
         super(connection);
     }
 
@@ -58,7 +58,7 @@ public class MySqlClientDao extends AbstractJDBCDao<Client, Integer> implements 
                 client.setPassword(set.getString("password"));
                 client.setDateOfBirth(set.getDate("date_of_birth"));
                 client.setDateOfRegistration(set.getTimestamp("date_of_registration"));
-                DaoFactory factory = new MySqlDaoFactory();
+                DaoFactory factory = new DaoFactoryImpl();
                 Connection connection = factory.getConnection();
                 GenericDao accountDao = factory.getAccountDao(connection);
                 Map<String,Account> map = accountDao.getByEntity(client.getId());

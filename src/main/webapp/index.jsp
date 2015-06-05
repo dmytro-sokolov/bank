@@ -14,7 +14,10 @@
             <input type="password" name="password" id="pass"/>
         </div>
         <div>
-            <input type="submit" />
+            <input type="submit" name="sign_in" value="Sign In" />
+            <input type="submit" name="sign_up" value="Register"/>
+            <a href="#">Forgot your password ?</a>
+            <a href="#">Change login</a>
         </div>
     </form>
 </div>
